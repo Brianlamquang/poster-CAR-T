@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>DROP-CAR T | Scientific Poster A0</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─────────────────────────────────────────────────────
+   RESET
+───────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ─────────────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────────────── */
+:root{
+  --navy:   #0d2b55;
+  --navy2:  #1a3f72;
+  --teal:   #006d77;
+  --teal2:  #008080;
+  --amber:  #b84f00;
+  --green:  #1a5c35;
+  --red:    #9b1c1c;
+  --bg:     #ffffff;
+  --bg2:    #eef2f7;
+  --bg3:    #dde5f0;
+  --stripe: #f5f7fb;
+  --txt:    #0d1b2a;
+  --txt2:   #253648;
+  --txt3:   #4a5f72;
+  --bdr:    #b0c4dc;
+
+  --fH: 'Barlow Condensed',sans-serif;
+  --fB: 'Barlow',sans-serif;
+  --fM: 'Roboto Mono',monospace;
+
+  --g:  5px;   /* gap */
+  --p:  7px;   /* padding */
+  --r:  3px;   /* radius */
+}
+
+/* ─────────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────────── */
+html,body{
+  background:#c8c8c8;
+  font-family:var(--fB);
+  font-size:8.6px;
+  color:var(--txt);
+  line-height:1.42;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* ─────────────────────────────────────────────────────
+   POSTER SHELL — 1260px → maps to A0 width on screen
+───────────────────────────────────────────────────── */
+.poster{
+  width:1260px;
+  margin:16px auto;
+  background:var(--bg);
+  box-shadow:0 6px 48px rgba(0,0,0,.4);
+  display:flex;
+  flex-direction:column;
+}
+
+/* ─────────────────────────────────────────────────────
+   HEADER
+───────────────────────────────────────────────────── */
+.hdr{
+  background:linear-gradient(135deg,#0a1e3d 0%,var(--navy) 45%,var(--teal) 100%);
+  color:#fff;
+  padding:12px 16px 10px;
+  display:grid;
+  grid-template-columns:1fr 210px;
+  gap:10px;
+  align-items:start;
+  border-bottom:4px solid var(--teal2);
+}
+.hdr-journal{
+  font-family:var(--fM);
+  font-size:7px;
+  letter-spacing:.12em;
+  color:rgba(255,255,255,.6);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.hdr-title{
+  font-family:var(--fH);
+  font-size:26px;
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-.01em;
+  margin-bottom:4px;
+}
+.hdr-sub{
+  font-family:var(--fH);
+  font-size:12px;
+  font-weight:400;
+  font-style:italic;
+  color:rgba(255,255,255,.82);
+  margin-bottom:6px;
+  letter-spacing:.01em;
+}
+.hdr-authors{
+  font-size:7.5px;
+  color:rgba(255,255,255,.72);
+  line-height:1.55;
+}
+.hdr-authors b{color:#fff;}
+.hdr-right{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.affil-box{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r);
+  padding:5px 8px;
+  font-size:7px;
+  color:rgba(255,255,255,.78);
+  line-height:1.55;
+}
+.affil-box b{color:#fff;display:block;font-size:7.5px;margin-bottom:1px;}
+.drug-badge{
+  background:rgba(255,255,255,.12);
+  border:1.5px solid rgba(255,255,255,.35);
+  border-radius:var(--r);
+  padding:5px 8px;
+  text-align:center;
+}
+.drug-badge .dn{
+  font-family:var(--fH);font-size:18px;font-weight:900;
+  color:#fff;letter-spacing:.04em;display:block;
+}
+.drug-badge .ds{
+  font-family:var(--fM);font-size:6.5px;color:rgba(255,255,255,.65);
+  letter-spacing:.08em;display:block;margin-bottom:3px;
+}
+.tags{display:flex;gap:4px;justify-content:center;}
+.ton{background:#16a34a;color:#fff;font-size:6.5px;font-weight:700;
+  padding:1px 6px;border-radius:2px;font-family:var(--fM);}
+.toff{background:#dc2626;color:#fff;font-size:6.5px;font-weight:700;
+  padding:1px 6px;border-radius:2px;font-family:var(--fM);}
+
+/* ─────────────────────────────────────────────────────
+   BODY — 3 equal columns
+───────────────────────────────────────────────────── */
+.body{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:var(--g);
+  padding:var(--g);
+  background:var(--bg2);
+  align-items:start;
+}
+.col{display:flex;flex-direction:column;gap:var(--g);}
+
+/* ─────────────────────────────────────────────────────
+   SECTION STRIPE
+───────────────────────────────────────────────────── */
+.ss{
+  background:var(--navy);
+  color:#fff;
+  font-family:var(--fH);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  display:flex;align-items:center;gap:6px;
+  border-radius:var(--r);
+}
+.ss.tl{background:var(--teal);}
+.ss.am{background:var(--amber);}
+.ss.gn{background:var(--green);}
+.sn{
+  background:#fff;color:var(--navy);
+  font-size:8px;font-weight:900;
+  width:16px;height:16px;border-radius:2px;
+  display:grid;place-items:center;flex-shrink:0;
+}
+.ss.tl .sn{color:var(--teal);}
+.ss.am .sn{color:var(--amber);}
+.ss.gn .sn{color:var(--green);}
+
+/* ─────────────────────────────────────────────────────
+   PANEL
+───────────────────────────────────────────────────── */
+.panel{
+  background:var(--bg);
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  overflow:hidden;
+}
+.ph{
+  background:var(--navy);
+  color:#fff;
+  font-family:var(--fH);
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.03em;
+  padding:3px 7px;
+  border-bottom:2px solid var(--teal2);
+}
+.ph.tl{background:var(--teal);border-bottom-color:var(--amber);}
+.ph.am{background:var(--amber);border-bottom-color:rgba(255,255,255,.3);}
+.ph.gn{background:var(--green);border-bottom-color:rgba(255,255,255,.3);}
+.ph.n2{background:var(--navy2);border-bottom-color:var(--teal);}
+.pb{padding:5px 7px;}
+
+/* ─────────────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────────────── */
+p{font-size:8.2px;color:var(--txt2);margin-bottom:4px;line-height:1.48;}
+p:last-child{margin-bottom:0;}
+b,strong{color:var(--txt);font-weight:600;}
+em{color:var(--teal);font-style:normal;font-weight:500;}
+
+ul.bl{list-style:none;margin:3px 0;}
+ul.bl li{
+  position:relative;padding-left:11px;
+  font-size:8px;color:var(--txt2);
+  margin-bottom:3px;line-height:1.44;
+}
+ul.bl li::before{
+  content:'▶';position:absolute;left:0;
+  color:var(--navy);font-size:5.5px;top:3px;
+}
+ul.bl li b{color:var(--txt);}
+
+/* ─────────────────────────────────────────────────────
+   FIGURE
+───────────────────────────────────────────────────── */
+.fig{
+  background:#f7f9fc;
+  border:1px solid var(--bdr);
+  border-radius:2px;
+  overflow:hidden;
+  margin:4px 0;
+}
+.fig img{width:100%;height:auto;display:block;}
+.fig-lbl{
+  display:inline-block;
+  background:var(--amber);color:#fff;
+  font-family:var(--fM);font-size:6.5px;font-weight:700;
+  padding:1px 5px;border-radius:2px;
+  margin-bottom:3px;letter-spacing:.06em;
+}
+.narr{
+  font-size:7.8px;color:var(--txt2);line-height:1.48;
+  border-left:2.5px solid var(--navy);
+  padding:3px 4px 3px 6px;
+  background:rgba(13,43,85,.04);
+  border-radius:0 2px 2px 0;
+  margin-top:3px;
+}
+.narr b{color:var(--navy);}
+.narr.tl{border-left-color:var(--teal);background:rgba(0,109,119,.04);}
+.narr.am{border-left-color:var(--amber);background:rgba(184,79,0,.04);}
+.narr.gn{border-left-color:var(--green);background:rgba(26,92,53,.04);}
+
+/* ─────────────────────────────────────────────────────
+   STATS GRID
+───────────────────────────────────────────────────── */
+.sg{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:3px;margin:4px 0;
+}
+.sg3{grid-template-columns:repeat(3,1fr);}
+.sg2{grid-template-columns:repeat(2,1fr);}
+.st{
+  background:var(--bg3);
+  border:1px solid var(--bdr);
+  border-radius:var(--r);
+  padding:4px 3px;text-align:center;
+}
+.sv{
+  display:block;
+  font-family:var(--fH);font-size:14px;font-weight:800;
+  color:var(--navy);line-height:1.1;
+}
+.sl{font-size:6.5px;color:var(--txt3);font-family:var(--fM);line-height:1.35;}
+
+/* ─────────────────────────────────────────────────────
+   MECHANISM FLOW
+───────────────────────────────────────────────────── */
+.mf{display:flex;align-items:stretch;gap:0;margin:4px 0;}
+.ms{
+  flex:1;background:var(--bg3);border:1px solid var(--bdr);
+  border-radius:var(--r);padding:4px 3px;text-align:center;
+  font-size:7.5px;color:var(--txt2);line-height:1.32;
+}
+.ms .mi{font-size:13px;display:block;margin-bottom:1px;}
+.ms b{display:block;color:var(--navy);font-size:7.5px;margin-bottom:1px;}
+.ma{display:flex;align-items:center;color:var(--teal2);font-size:11px;padding:0 2px;flex-shrink:0;}
+
+/* ─────────────────────────────────────────────────────
+   COMPONENTS GRID
+───────────────────────────────────────────────────── */
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:3px 0;}
+.ci{
+  background:var(--bg3);border:1px solid var(--bdr);
+  border-radius:var(--r);padding:3px 5px;
+}
+.ci .cn{
+  font-family:var(--fH);font-size:9px;font-weight:700;
+  color:var(--navy);display:block;margin-bottom:1px;
+}
+.ci .cd{font-size:7px;color:var(--txt3);line-height:1.38;}
+
+/* ─────────────────────────────────────────────────────
+   FINDING BOX
+───────────────────────────────────────────────────── */
+.fb{
+  background:rgba(13,43,85,.06);
+  border-left:3px solid var(--navy);
+  border-radius:0 var(--r) var(--r) 0;
+  padding:4px 6px;margin:4px 0;
+  font-size:7.8px;color:var(--txt);line-height:1.45;
+}
+.fb .fk{
+  font-family:var(--fH);font-size:8.5px;font-weight:700;
+  color:var(--navy);text-transform:uppercase;letter-spacing:.05em;
+  display:block;margin-bottom:2px;
+}
+.fb.tl{border-left-color:var(--teal);background:rgba(0,109,119,.06);}
+.fb.tl .fk{color:var(--teal);}
+.fb.am{border-left-color:var(--amber);background:rgba(184,79,0,.06);}
+.fb.am .fk{color:var(--amber);}
+.fb.gn{border-left-color:var(--green);background:rgba(26,92,53,.06);}
+.fb.gn .fk{color:var(--green);}
+
+/* ─────────────────────────────────────────────────────
+   COMPARE TABLE
+───────────────────────────────────────────────────── */
+table.ct{width:100%;border-collapse:collapse;font-size:7.5px;margin:4px 0;}
+table.ct th{
+  background:var(--navy);color:#fff;
+  font-family:var(--fH);font-size:8px;font-weight:700;
+  padding:3px 5px;text-align:left;
+  border:1px solid var(--navy2);
+}
+table.ct td{
+  padding:3px 5px;border:1px solid var(--bdr);
+  vertical-align:top;color:var(--txt2);line-height:1.38;
+}
+table.ct tr:nth-child(even) td{background:var(--stripe);}
+table.ct td:first-child{font-weight:600;color:var(--txt);background:var(--bg2);}
+.tg{color:var(--green);font-weight:600;}
+.to{color:var(--amber);font-weight:600;}
+.tb{color:var(--red);font-weight:600;}
+
+/* ─────────────────────────────────────────────────────
+   CONCLUSION GRID
+───────────────────────────────────────────────────── */
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:4px 0;}
+.ki{
+  background:var(--bg3);border:1px solid var(--bdr);
+  border-top:3px solid var(--navy);border-radius:var(--r);
+  padding:5px 6px;
+}
+.ki:nth-child(2){border-top-color:var(--teal);}
+.ki:nth-child(3){border-top-color:var(--amber);}
+.ki:nth-child(4){border-top-color:var(--green);}
+.ki .kic{font-size:14px;margin-bottom:2px;}
+.ki .kit{
+  font-family:var(--fH);font-size:9px;font-weight:700;
+  color:var(--navy);margin-bottom:2px;display:block;
+}
+.ki p{font-size:7.5px;margin:0;color:var(--txt2);}
+
+/* ─────────────────────────────────────────────────────
+   CHIP / INLINE TAG
+───────────────────────────────────────────────────── */
+.ch{
+  display:inline-block;font-family:var(--fM);
+  font-size:6.8px;font-weight:700;
+  padding:1px 4px;border-radius:2px;line-height:1.4;
+  vertical-align:middle;
+}
+.ch.nv{background:var(--navy);color:#fff;}
+.ch.tl{background:var(--teal);color:#fff;}
+.ch.am{background:var(--amber);color:#fff;}
+.ch.gn{background:var(--green);color:#fff;}
+
+/* ─────────────────────────────────────────────────────
+   HR
+───────────────────────────────────────────────────── */
+hr{border:none;border-top:1px solid var(--bdr);margin:4px 0;}
+
+/* ─────────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────────── */
+.footer{
+  background:var(--navy);color:rgba(255,255,255,.7);
+  padding:4px 14px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:6.8px;font-family:var(--fM);
+  gap:8px;flex-wrap:wrap;
+  border-top:3px solid var(--teal2);
+}
+.footer a{color:var(--teal2);text-decoration:none;}
+.footer b{color:#fff;}
+
+/* ─────────────────────────────────────────────────────
+   PRINT
+───────────────────────────────────────────────────── */
+@media print{
+  html,body{background:none;}
+  .poster{width:841mm;margin:0;box-shadow:none;}
+}
+</style>
+</head>
+<body>
+<div class="poster">
+
+<!-- ══════════════════════════════════════════════════════
+     HEADER BANNER
+══════════════════════════════════════════════════════ -->
+<div class="hdr">
+  <div>
+    <div class="hdr-journal">Nature Chemical Biology · Published 19 Feb 2026 · DOI: 10.1038/s41589-026-02152-x · Open Access CC BY 4.0</div>
+    <div class="hdr-title">Drug-Controlled CAR T Cells Through the Regulation of Cell–Cell Interactions</div>
+    <div class="hdr-sub">Hệ DROP-CAR — Kiểm soát linh hoạt tế bào T miễn dịch bằng Venetoclax thông qua điều hòa tương tác tế bào–tế bào</div>
+    <div class="hdr-authors">
+      <b>Leo Scheller<sup>1,2,8</sup>, Greta M.P. Giordano Attianese<sup>3,8</sup>, Rocío Castellanos-Rueda<sup>4,5</sup>, Raphaël B. Di Roberto<sup>4</sup>,</b>
+      Markus Barden<sup>6</sup>, Melanie Triboulet<sup>3</sup>, Morteza Hafezi<sup>3</sup>, Sarah Ash<sup>3</sup>, Sailan Shui<sup>1</sup>, Elisabetta Cribioli<sup>3</sup>,
+      Patrick Reichenbach<sup>3</sup>, Jimmy Maillard<sup>3</sup>, Anthony Marchand<sup>1</sup>, Sandrine Georgeon<sup>1</sup>, Benita Wolf<sup>7</sup>,
+      Hinrich Abken<sup>6</sup>, Sai Reddy<sup>4</sup>, <b>Bruno E. Correia<sup>1</sup> &amp; Melita Irving<sup>3</sup></b>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div class="affil-box">
+      <b>Đơn vị công tác</b>
+      <sup>1</sup> EPFL — Lab. Protein Design &amp; Immunoengineering, Lausanne<br>
+      <sup>2</sup> Leibniz Institute for Immunotherapy, Regensburg<br>
+      <sup>3</sup> Ludwig Institute for Cancer Research, Univ. Lausanne<br>
+      <sup>4</sup> ETH Zürich — Dept. Biosystems Science &amp; Engineering<br>
+      <sup>6</sup> Division of Genetic Immunotherapy, Leibniz Institute
+    </div>
+    <div class="drug-badge">
+      <span class="dn">Venetoclax</span>
+      <span class="ds">FDA-APPROVED · BCL-2 INHIBITOR · ORAL</span>
+      <div class="tags"><span class="ton">CAR ON</span><span class="toff">CAR OFF</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     3-COLUMN BODY
+══════════════════════════════════════════════════════ -->
+<div class="body">
+
+<!-- ████████████████  CỘT TRÁI  ████████████████ -->
+<div class="col">
+
+  <div class="ss"><div class="sn">1</div>Bối cảnh &amp; Mục tiêu Nghiên cứu</div>
+
+  <div class="panel">
+    <div class="ph">Hạn chế của CAR-T Thế hệ 2G (2G-CAR)</div>
+    <div class="pb">
+      <p>Liệu pháp CAR-T đạt tỷ lệ đáp ứng hoàn toàn cao tại ung thư huyết học nhưng bị cản trở nghiêm trọng khi mở rộng sang khối u rắn bởi bốn thách thức cốt lõi:</p>
+      <ul class="bl">
+        <li><b>Độc tính on-target/off-tumor:</b> kháng nguyên đích biểu hiện trên mô lành, gây nguy cơ tự miễn không thể kiểm soát sau khi truyền.</li>
+        <li><b>Hội chứng giải phóng cytokine (CRS):</b> siêu hoạt hóa miễn dịch tức thì có thể gây suy đa tạng, là nguyên nhân tử vong hàng đầu.</li>
+        <li><b>Kiệt sức tế bào T (exhaustion):</b> phơi nhiễm kháng nguyên mạn tính làm mất chức năng dài hạn của tế bào trị liệu.</li>
+        <li><b>Thiếu công tắc tắt khẩn cấp:</b> không thể điều chỉnh hoạt tính sau khi đã truyền vào bệnh nhân.</li>
+      </ul>
+      <div class="fb">
+        <span class="fk">Khoảng trống nghiên cứu</span>
+        Thiết kế off-switch hiện tại dùng rapamycin (ức chế T cell), lenalidomide (ức chế miễn dịch) hoặc protein không từ người — đều tạo rào cản lâm sàng. Cần giải pháp đột phá với thuốc đã phê duyệt, protein người và cơ chế đảo nghịch.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph tl">Mục tiêu: Hệ DROP-CAR</div>
+    <div class="pb">
+      <p>Thiết kế <b>DROP-CAR</b> (<em>Drug-Regulated Off-switch PPI-CAR</em>) thỏa mãn đồng thời 5 tiêu chí:</p>
+      <ul class="bl">
+        <li><b>Protein 100% từ người</b> → giảm tối đa nguy cơ đáp ứng miễn dịch chống trị liệu.</li>
+        <li><b>Venetoclax</b> — thuốc đã FDA phê duyệt (CLL, AML), uống hàng ngày, t½=19–26h.</li>
+        <li><b>Phá vỡ tiếp xúc tế bào–tế bào trực tiếp</b> (extracellular), nhanh hơn phân hủy proteasome.</li>
+        <li><b>Hoàn toàn thuận nghịch</b> — chức năng phục hồi sau ngừng thuốc kể cả giai đoạn muộn.</li>
+        <li><b>Module hóa</b> — mở rộng sang dual antigen, nhiều scFv, nền tảng receptor tổng hợp.</li>
+      </ul>
+      <div class="sg sg3">
+        <div class="st"><span class="sv">IC₅₀</span><span class="sl">59 nM Vene<br>phân rã CAR</span></div>
+        <div class="st"><span class="sv">t½</span><span class="sl">~2.8 giờ<br>@1.25 µM</span></div>
+        <div class="st"><span class="sv">100%</span><span class="sl">Thuận nghịch<br>in vivo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ss"><div class="sn">2</div>Thiết kế &amp; Cơ chế Phân tử</div>
+
+  <div class="panel">
+    <div class="ph n2">Kiến trúc DROP-CAR: Tách đôi Ngoại bào</div>
+    <div class="pb">
+      <p>DROP-CAR là thiết kế tách đôi ngoại bào hoàn toàn mới: <b>S-chain</b> xuyên màng (dmLD3 + CD28 + CD3ζ) kết hợp non-covalent với <b>R-domain</b> không xuyên màng (scFv khối u + Bcl-2). Khi venetoclax gắn Bcl-2, PPI bị phá vỡ, R-domain (và scFv) giải phóng khỏi bề mặt tế bào T, triệt tiêu hoàn toàn cầu nối vật lý với khối u.</p>
+      <div class="mf">
+        <div class="ms"><span class="mi">🔗</span><b>Lắp ráp</b>dmLD3:Bcl-2<br>K<sub>D</sub>=82 nM</div>
+        <div class="ma">→</div>
+        <div class="ms"><span class="mi">💊</span><b>Venetoclax</b>gắn Bcl-2,<br>cạnh tranh dmLD3</div>
+        <div class="ma">→</div>
+        <div class="ms"><span class="mi">🔓</span><b>Phân rã</b>R-domain + scFv<br>giải phóng</div>
+        <div class="ma">→</div>
+        <div class="ms"><span class="mi">🛑</span><b>CAR TẮT</b>Mất tiếp xúc<br>tế bào ung thư</div>
+      </div>
+      <div class="cg">
+        <div class="ci"><span class="cn">dmLD3</span><span class="cd">Scaffold ApoE4 + 12aa từ BH3/Bim; biến thể A130G;R134V tối ưu</span></div>
+        <div class="ci"><span class="cn">Bcl-2</span><span class="cd">Đích venetoclax; kết hợp dmLD3 K<sub>D</sub>=82nM, phân rã IC₅₀=59nM</span></div>
+        <div class="ci"><span class="cn">scFv</span><span class="cd">Vùng nhận diện kháng nguyên; nằm trên R-domain di động ngoại bào</span></div>
+        <div class="ci"><span class="cn">S-chain</span><span class="cd">Chuỗi tín hiệu xuyên màng; mang dmLD3 + CD28 + CD3ζ nội bào</span></div>
+        <div class="ci"><span class="cn">R-domain</span><span class="cd">Không xuyên màng; mang scFv + Bcl-2; giải phóng khi có venetoclax</span></div>
+        <div class="ci"><span class="cn">Venetoclax</span><span class="cd">Uống 400mg/ngày; Cmax ~2µM; t½=19–26h; FDA-approved CLL/AML</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph n2">Hình 1 — Thiết kế &amp; Sàng lọc Thư viện LD3 (6 vòng)</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 1 · Library Design &amp; 6-Round Screening</div>
+      <div class="fig"><img src="hinh1.png" alt="Hình 1: Thiết kế DROP-CAR và sàng lọc thư viện LD3 qua 6 vòng trên B3Z reporter cells"/></div>
+      <div class="narr">
+        Từ so sánh cấu trúc 2G-CAR và DROP-CAR (1a), nhóm tác giả xây dựng thư viện NNK saturation mutagenesis tại 4 vị trí giao diện LD3:Bcl-2 — tổng ~460 biến thể (1f,g). Qua 6 vòng sàng lọc tế bào sống trên B3Z reporter (1d,h), biến thể kép <b>A130G;R134V (dmLD3)</b> nổi lên với mức làm giàu 72% trong quần thể nhạy cảm cao nhất (sort 6, V5-low) — xác nhận đây là biến thể duy nhất đồng thời duy trì lắp ráp bề mặt lẫn nhạy cảm venetoclax tối ưu (1i).
+      </div>
+    </div>
+  </div>
+
+</div><!-- end col LEFT -->
+
+<!-- ████████████████  CỘT GIỮA  ████████████████ -->
+<div class="col">
+
+  <div class="ss am"><div class="sn">3</div>Kết quả Chính — In vitro &amp; Đặc tính Hóa</div>
+
+  <div class="panel">
+    <div class="ph am">Hình 2 — Đặc tính Hóa DROP-CAR Tối ưu (dmLD3)</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 2 · Dose–Response, Kinetics &amp; z-Movi Cell Binding Force</div>
+      <div class="fig"><img src="hinh2.png" alt="Hình 2: Dose-response IC50=59nM, time-course t½=2.8h và LUMICKS z-Movi binding force"/></div>
+      <div class="narr">
+        Hình 2 là bằng chứng định lượng trực tiếp nhất. Đường cong dose-response trên Jurkat biểu hiện DROP-CAR tối ưu cho thấy <b>IC₅₀ = 59 nM</b> — thấp hơn ~34 lần nồng độ huyết tương thông thường (~2µM sau liều 400mg), tạo dư địa điều chỉnh liều rất rộng (2a). Time-course tại 1.25µM venetoclax cho thấy <b>t½ ≈ 2.8 giờ</b> — đủ nhanh cho can thiệp lâm sàng khẩn cấp (2b). Quan trọng nhất, thiết bị LUMICKS z-Movi đo lực bám dính đơn tế bào (2c) chứng minh trực tiếp: ở 1000 pN, DROP-CAR Jurkat có venetoclax giảm bám dính xuống &lt;10% (mức nền UTD), trong khi 2G-CAR vẫn giữ ~60% — xác nhận cơ chế phá vỡ tiếp xúc tế bào đặc hiệu và đủ lực chức năng (2d,e).
+      </div>
+      <div class="sg">
+        <div class="st"><span class="sv">59nM</span><span class="sl">IC₅₀<br>venetoclax</span></div>
+        <div class="st"><span class="sv">2.8h</span><span class="sl">t½ phân<br>rã receptor</span></div>
+        <div class="st"><span class="sv">&lt;10%</span><span class="sl">Bám dính<br>còn lại+Vene</span></div>
+        <div class="st"><span class="sv">~60%</span><span class="sl">2G-CAR<br>không thay đổi</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph am">Hình 3 — Dual DROP-CAR &amp; Logic Gate AND/NOT</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 3 · Dual Antigen &amp; Synthetic Logic Gate</div>
+      <div class="fig"><img src="hinh3.png" alt="Hình 3: Dual DROP-CAR kiểm soát CD19+PSMA độc lập; AND/NOT logic gate GEMS caffeine/venetoclax"/></div>
+      <div class="narr">
+        Hình 3 mở rộng tính module của DROP-CAR sang hai chiều quan trọng. <b>Dual DROP-CAR</b>: ghép hai R-domain độc lập lên cùng S-chain — Bcl-xL (CD19-scFv, nhạy A-1155463) và Bcl-2 (PSMA-scFv, nhạy venetoclax) — cho phép kiểm soát từng kháng nguyên riêng biệt bằng hai loại thuốc khác nhau (3a–d): A-1155463 giải phóng gần hoàn toàn Bcl-xL/CD19 trong khi venetoclax chỉ tác động Bcl-2/PSMA, và ngược lại. <b>Logic gate GEMS</b>: tích hợp dmLD3:Bcl-2 vào receptor cytokine tổng hợp (GEMS) tạo ra logic <b>A AND (NOT B)</b> — bật với caffeine, tắt với venetoclax (3e,f) — mở ra hướng mạch điều khiển gen tế bào phức tạp.
+      </div>
+      <div class="fb tl">
+        <span class="fk">Ý nghĩa lâm sàng — Dual DROP-CAR</span>
+        Kiểm soát scFv độc lập theo kháng nguyên giảm nguy cơ antigen escape mà không tăng độc tính off-tumor — giải quyết đồng thời hiệu quả và an toàn trong ung thư biểu hiện kháng nguyên không đồng nhất.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph am">Hình 4 — T Tế bào Người Nguyên phát: In vitro &amp; In vivo NSG</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 4 · Primary Human DROP-CAR T Cells — Function &amp; NSG Tumor Control</div>
+      <div class="fig"><img src="hinh4.png" alt="Hình 4: IFNγ production, IncuCyte cytotoxicity PSMA/EpCAM, mô hình NSG PC3-PIP ghép khối u dưới da"/></div>
+      <div class="narr">
+        Hình 4 là dữ liệu then chốt khẳng định tính khả thi lâm sàng. Trong đồng nuôi cấy với PC3-PIP (PSMA+), cả DROP-CAR và 2G-CAR T đều tiết IFNγ hiệu quả; nhưng <b>venetoclax ức chế hoàn toàn DROP-CAR T mà không ảnh hưởng 2G-CAR</b> (4b). IncuCyte cytotoxicity (4c–e) xác nhận DROP-CAR diệt PSMA+ tumor hiệu quả tương đương 2G-CAR; giảm độc tính phụ thuộc liều venetoclax có ý nghĩa thống kê (<b>p=0.014</b>). Tính module xác nhận qua EpCAM DROP-CAR với p=0.031 (4f,g). In vivo trên NSG (4h,i): DROP-CAR T kiểm soát PC3-PIP subcutaneous tumor ngang 2G-CAR; venetoclax 2.5mg/kg/48h <b>ức chế hoàn toàn kiểm soát khối u (p&lt;0.001)</b>; ngừng thuốc → khối u co lại → <b>thuận nghịch hoàn toàn</b>.
+      </div>
+      <div class="sg sg3">
+        <div class="st"><span class="sv">p&lt;0.001</span><span class="sl">Ức chế in vivo<br>2G-CAR không đổi</span></div>
+        <div class="st"><span class="sv">40–60%</span><span class="sl">Transduction<br>CD4+ T cells</span></div>
+        <div class="st"><span class="sv">✓</span><span class="sl">Phục hồi sau<br>ngừng venetoclax</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end col MIDDLE -->
+
+<!-- ████████████████  CỘT PHẢI  ████████████████ -->
+<div class="col">
+
+  <div class="ss am"><div class="sn">3</div>Kết quả Chính — So sánh &amp; CRS</div>
+
+  <div class="panel">
+    <div class="ph am">Hình 5 — So sánh Đầu–Cuối: DROP-CAR vs DEG-CAR</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 5 · HEAD-TO-HEAD: DROP-CAR (Venetoclax) vs DEG-CAR (Lenalidomide)</div>
+      <div class="fig"><img src="hinh5.png" alt="Hình 5: So sánh trực tiếp DROP-CAR và DEG-CAR về cytotoxicity và activation markers CD25/CD71/LAG3"/></div>
+      <div class="narr">
+        Hình 5 đặt DROP-CAR vào cạnh tranh trực tiếp với hệ DEG-CAR (superdegron IKZF3/ZFP91, nhạy lenalidomide). IncuCyte cytotoxicity (5c) cho thấy <b>venetoclax 2.5µM ức chế DROP-CAR tức thì và hoàn toàn</b>, trong khi lenalidomide cần ≥50µM mới ức chế đủ DEG-CAR — phản ánh ưu thế cơ chế phá vỡ tiếp xúc bề mặt so với phân hủy proteasome chậm. Phân tích marker hoạt hóa CD25, CD71 và điểm kiểm soát LAG3 (5d): venetoclax giảm mạnh cả ba marker tại DROP-CAR T (CD25: p&lt;0.0001; CD71: p=0.0004; LAG3: p=0.0002), trong khi lenalidomide chỉ tạo xu hướng giảm nhẹ với DEG-CAR T — khẳng định ức chế tín hiệu T cell toàn diện và đặc hiệu hơn.
+      </div>
+      <table class="ct">
+        <thead><tr><th>Tiêu chí</th><th>DROP-CAR +Venetoclax</th><th>DEG-CAR +Lenalidomide</th></tr></thead>
+        <tbody>
+          <tr><td>Cơ chế tắt</td><td class="tg">PPI disruption bề mặt</td><td class="to">Proteasome nội bào</td></tr>
+          <tr><td>Tốc độ ức chế</td><td class="tg">Tức thì, liều thấp</td><td class="to">Chậm, liều cao</td></tr>
+          <tr><td>CD25/CD71/LAG3</td><td class="tg">Giảm mạnh (p&lt;0.001)</td><td class="to">Xu hướng giảm</td></tr>
+          <tr><td>Ức chế CRS (3 ngày)</td><td class="tg">Hoàn toàn 3/3 ngày</td><td class="tb">Chỉ ngày 1, mất dần</td></tr>
+          <tr><td>Ảnh hưởng T cell</td><td class="tg">Venetoclax không ức chế T</td><td class="to">Lenalidomide biến đổi T</td></tr>
+          <tr><td>Protein nguồn gốc</td><td class="tg">100% từ người (ApoE4)</td><td class="to">Người (IKZF3/ZFP91)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph am">Hình 6 — Kiểm soát Tiềm năng CRS: IL-6 Serial Coculture</div>
+    <div class="pb">
+      <div class="fig-lbl">FIGURE 6 · CRS Mitigation — IL-6 Over 3 Serial Cocultures with Autologous Monocytes</div>
+      <div class="fig"><img src="hinh6.png" alt="Hình 6: Thử nghiệm CRS potential — đo IL-6 trong đồng nuôi cấy nối tiếp 3 ngày với bạch cầu đơn nhân tự thân và tế bào ung thư"/></div>
+      <div class="narr">
+        Hình 6 giải quyết mối lo ngại lâm sàng lớn nhất: kiểm soát CRS. Mô hình đồng nuôi cấy nối tiếp 3 ngày (CAR T + bạch cầu đơn nhân tự thân + tế bào ung thư — 6a) đo IL-6 là surrogate CRS marker. Kết quả (6b) cho thấy sự phân kỳ rõ rệt: <b>Venetoclax ức chế hoàn toàn sản xuất IL-6 bởi DROP-CAR T trong cả ba ngày liên tiếp</b> (p&lt;0.05 mỗi ngày). Ngược lại, lenalidomide chỉ ức chế DEG-CAR T ngày đầu, sau đó mất dần hiệu quả — gợi ý bão hòa con đường ubiquitin–proteasome. 2G-CAR T không bị ảnh hưởng bởi cả hai thuốc (6b, right panel). Các control (6c) xác nhận IL-6 sản xuất đặc hiệu phụ thuộc tiếp xúc CAR T với tế bào ung thư.
+      </div>
+      <div class="fb am">
+        <span class="fk">Phát hiện Then chốt — CRS Control</span>
+        DROP-CAR là hệ CAR-T off-switch duy nhất được chứng minh ức chế bền vững IL-6 trong đồng nuôi cấy nối tiếp nhiều ngày — vượt trội DEG-CAR về kiểm soát CRS kéo dài, phản ánh ưu thế cơ chế tác động trực tiếp và không phụ thuộc degradation pathway.
+      </div>
+    </div>
+  </div>
+
+  <div class="ss gn"><div class="sn">4</div>Ý nghĩa Lâm sàng &amp; Kết luận</div>
+
+  <div class="panel">
+    <div class="ph gn">Kết luận &amp; Triển vọng Ứng dụng</div>
+    <div class="pb">
+      <p>DROP-CAR đại diện cho bước tiến đột phá trong hành trình xây dựng liệu pháp tế bào T điều khiển từ xa — giải quyết đồng thời an toàn, chính xác và linh hoạt thông qua cơ chế hoàn toàn mới: phá vỡ tiếp xúc tế bào trực tiếp bằng thuốc đã phê duyệt lâm sàng, protein 100% từ người.</p>
+      <div class="kg">
+        <div class="ki">
+          <div class="kic">🛡️</div>
+          <span class="kit">Tăng An toàn</span>
+          <p>Tắt CAR theo liều; kiểm soát CRS hoàn toàn 3 ngày liên tiếp; không ức chế T cell bởi venetoclax; rủi ro immunogenicity thấp</p>
+        </div>
+        <div class="ki">
+          <div class="kic">🎯</div>
+          <span class="kit">Kiểm soát Chính xác</span>
+          <p>IC₅₀=59nM; t½=2.8h; điều chỉnh liều linh hoạt; thuận nghịch hoàn toàn in vivo cả giai đoạn muộn</p>
+        </div>
+        <div class="ki">
+          <div class="kic">🔬</div>
+          <span class="kit">Tiềm năng Lâm sàng</span>
+          <p>Venetoclax FDA-approved; uống hàng ngày; transduction ≥40%; tương thích GMP; nồng độ trị liệu đạt &gt;34× IC₅₀</p>
+        </div>
+        <div class="ki">
+          <div class="kic">🔗</div>
+          <span class="kit">Kiến trúc Module</span>
+          <p>Dual antigen CD19+PSMA; EpCAM xác nhận; AND/NOT logic GEMS; mở rộng SynNotch, degrons và receptor tổng hợp</p>
+        </div>
+      </div>
+      <div class="fb gn">
+        <span class="fk">Tuyên bố Kết luận</span>
+        DROP-CAR mở ra hướng điều trị miễn dịch ung thư thế hệ mới: kiểm soát tế bào T từ xa — an toàn hơn, chính xác hơn và có tính lâm sàng cao hơn mọi thiết kế off-switch CAR-T hiện tại. Khả năng mở rộng sang receptor tổng hợp phức tạp với logic AND/NOT cho thấy đây là nền tảng công nghệ vượt ra ngoài phạm vi CAR-T đơn thuần.
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="ph">Tổng hợp Thông số Định lượng Then chốt</div>
+    <div class="pb">
+      <div class="sg">
+        <div class="st"><span class="sv">82nM</span><span class="sl">K<sub>D</sub> dmLD3:<br>Bcl-2 (SPR)</span></div>
+        <div class="st"><span class="sv">59nM</span><span class="sl">IC₅₀ phân<br>rã DROP-CAR</span></div>
+        <div class="st"><span class="sv">2.8h</span><span class="sl">t½ phân<br>rã@1.25µM</span></div>
+        <div class="st"><span class="sv">72%</span><span class="sl">dmLD3 làm<br>giàu sort 6</span></div>
+      </div>
+      <div class="sg" style="margin-top:3px;">
+        <div class="st"><span class="sv">460+</span><span class="sl">Biến thể LD3<br>thư viện</span></div>
+        <div class="st"><span class="sv">6</span><span class="sl">Vòng sàng<br>lọc B3Z</span></div>
+        <div class="st"><span class="sv">40–60%</span><span class="sl">Transduction<br>CD4+ T</span></div>
+        <div class="st"><span class="sv">7 con</span><span class="sl">Chuột NSG<br>mỗi nhóm</span></div>
+      </div>
+      <hr/>
+      <ul class="bl">
+        <li><b>In vivo NSG:</b> DROP-CAR = 2G-CAR kiểm soát khối u; venetoclax ức chế hoàn toàn (p&lt;0.001); phục hồi sau ngừng thuốc.</li>
+        <li><b>Tính module:</b> Dual CD19+PSMA; EpCAM; AND/NOT GEMS; Bcl-xL+A-1155463 tương thích.</li>
+        <li><b>Immunogenicity thấp:</b> dmLD3 chỉ khác 12aa so với ApoE4 hoang dại — thấp hơn hẳn switch nguồn gốc ngoài người.</li>
+        <li><b>Hạn chế:</b> Mật độ bề mặt thấp hơn 2G-CAR (MFI thấp hơn); hiệu quả với khối u biểu hiện kháng nguyên thấp cần đánh giá thêm.</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- end col RIGHT -->
+</div><!-- end body -->
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════ -->
+<div class="footer">
+  <span><b>Scheller L., Giordano Attianese G.M.P. et al.</b> Drug-controlled CAR T cells through the regulation of cell–cell interactions. <em>Nature Chemical Biology</em>, 2026.</span>
+  <span>DOI: <a href="https://doi.org/10.1038/s41589-026-02152-x">10.1038/s41589-026-02152-x</a></span>
+  <span>✉ <a href="mailto:Bruno.Correia@epfl.ch">Bruno.Correia@epfl.ch</a> &nbsp;·&nbsp; <a href="mailto:Melita.Irving@unil.ch">Melita.Irving@unil.ch</a></span>
+  <span>Supported by: Ludwig Cancer Research · SNSF (310030_204326) · ERC (716058) · Swiss Cancer League (KFS-5032-02-2020)</span>
+</div>
+
+</div><!-- end poster -->
+</body>
+</html>
